@@ -26,7 +26,9 @@ class BusinessCell: UITableViewCell {
             reviewsCountLabel.text = (business.reviewCount!.integerValue > 1) ? "\(business.reviewCount!) Review" : "\(business.reviewCount!) Reviews"
             addressLabel.text = business.address
             categoryLabel.text = business.categories
-            thumbnailImageView.setImageWithURL(business.imageURL!)
+            if let imageURL = business.imageURL {
+                        thumbnailImageView.setImageWithURL(imageURL)
+            }
             ratingImageView.setImageWithURL(business.ratingImageURL!)
         }
     }
@@ -36,6 +38,9 @@ class BusinessCell: UITableViewCell {
         // Initialization code
         thumbnailImageView.layer.cornerRadius = 3
         thumbnailImageView.clipsToBounds = true
+        
+        self.layoutMargins = UIEdgeInsetsZero
+        self.preservesSuperviewLayoutMargins = false
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
