@@ -13,6 +13,7 @@ class BusinessesViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     var searchBar: UISearchBar!
+    var noResultLabel: UILabel!
     var loadingMoreView:InfiniteScrollActivityView?
     var businesses: [Business]!
     var searchTerm = ""
@@ -37,7 +38,12 @@ class BusinessesViewController: UIViewController {
         let frame = CGRectMake(0, tableView.contentSize.height, tableView.bounds.size.width, InfiniteScrollActivityView.defaultHeight)
         loadingMoreView = InfiniteScrollActivityView(frame: frame)
         loadingMoreView!.hidden = true
+        noResultLabel = UILabel(frame: frame)
+        noResultLabel.textAlignment = .Center
+        noResultLabel.text = "No More Result"
+        noResultLabel.hidden = true
         tableView.addSubview(loadingMoreView!)
+        tableView.tableFooterView = noResultLabel
         
         var insets = tableView.contentInset;
         insets.bottom += InfiniteScrollActivityView.defaultHeight;
@@ -54,17 +60,6 @@ class BusinessesViewController: UIViewController {
 
         doSearch()
 
-// Example of Yelp search with more search options specified
-//        let filters = YelpFilters.instance.parameters 
-//        Business.searchWithTerm("", offset: offset, sort: .Distance, categories: ["asianfusion", "burgers"], deals: true) { (businesses: [Business]!, error: NSError!) -> Void in
-//            self.businesses = businesses
-//            self.tableView.reloadData()
-//            for business in businesses {
-//                print(business.name!)
-//                print(business.address!)
-//            }
-//        }
-
     }
 
     override func didReceiveMemoryWarning() {
@@ -77,17 +72,6 @@ class BusinessesViewController: UIViewController {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-        
-//        if segue.destinationViewController is UINavigationController {
-//            let navigationController = segue.destinationViewController as! UINavigationController {
-//                if navigationController.viewControllers[0] is FiltersViewController {
-//                    let controller = navigationController.viewControllers[0] as! FiltersViewController
-//                    controller.delegate = self
-//                }
-//            }
-//        }
         if segue.destinationViewController is FiltersViewController {
                 let controller = segue.destinationViewController as! FiltersViewController
                 controller.delegate = self
@@ -105,8 +89,10 @@ class BusinessesViewController: UIViewController {
             }
             if (businesses.count < self.limitedResultsNumber) {
                 self.isMoreDataLoading = false
+                self.noResultLabel.hidden = false
             } else {
                 self.isMoreDataLoading = true
+                self.noResultLabel.hidden = true
             }
 
             print("number of business: \(self.businesses.count)")
