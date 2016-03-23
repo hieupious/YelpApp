@@ -40,7 +40,7 @@ class BusinessesViewController: UIViewController {
         loadingMoreView!.hidden = true
         noResultLabel = UILabel(frame: frame)
         noResultLabel.textAlignment = .Center
-        noResultLabel.text = "No More Result"
+        noResultLabel.text = "No More Results"
         noResultLabel.hidden = true
         tableView.addSubview(loadingMoreView!)
         tableView.tableFooterView = noResultLabel
@@ -130,6 +130,7 @@ extension BusinessesViewController: UITableViewDataSource, UITableViewDelegate {
 extension BusinessesViewController: UISearchBarDelegate {
     func searchBarShouldBeginEditing(searchBar: UISearchBar) -> Bool {
         searchBar.setShowsCancelButton(true, animated: true)
+
         return true;
     }
     
@@ -169,7 +170,7 @@ extension BusinessesViewController: UIScrollViewDelegate {
                 loadingMoreView?.frame = frame
                 loadingMoreView!.startAnimating()
                isMoreDataLoading = false
-                loadingTimes++
+                loadingTimes += 1
                 doSearch()
                 // ... Code to load more results ...
             }

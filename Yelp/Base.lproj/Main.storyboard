@@ -120,7 +120,7 @@
                                 </prototypes>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.76862745099999996" green="0.070588235289999995" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="7kL-9Z-7EJ" firstAttribute="leading" secondItem="XhR-oz-92f" secondAttribute="leading" id="PHK-IX-dWK"/>
                             <constraint firstItem="VBY-gq-v8E" firstAttribute="top" secondItem="7kL-9Z-7EJ" secondAttribute="bottom" id="U0E-Vn-jbe"/>
@@ -134,6 +134,9 @@
                             <connections>
                                 <segue destination="Ax3-p4-LFy" kind="modal" id="zEv-Jq-X8h"/>
                             </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="Map" id="Vok-TY-tvZ">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
@@ -200,13 +203,13 @@
                                 </textAttributes>
                                 <items>
                                     <navigationItem title="Filters" id="fdP-Vk-pB5">
-                                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="LDt-8Y-5Ie">
+                                        <barButtonItem key="leftBarButtonItem" image="Cancel" id="LDt-8Y-5Ie">
                                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <connections>
                                                 <action selector="handleCancelButton:" destination="Ax3-p4-LFy" id="kgn-Y5-Kds"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" title="Search" id="9as-wa-AVG">
+                                        <barButtonItem key="rightBarButtonItem" image="Search" id="9as-wa-AVG">
                                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <connections>
                                                 <action selector="handleSearchButton:" destination="Ax3-p4-LFy" id="EK1-za-2Vb"/>
@@ -285,6 +288,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Cancel" width="22" height="22"/>
+        <image name="Map" width="22" height="22"/>
+        <image name="Search" width="22" height="22"/>
         <image name="filter" width="22" height="22"/>
     </resources>
 </document>
